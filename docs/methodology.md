@@ -30,11 +30,16 @@ For each synthetic episode:
 
 ## 2. Price-Volume-Mix (PVM) Variance Decomposition
 
-**Volume Effect**: `(Q₁ - Q₀) × P₀`
-**Mix Effect**: `Q₁ × (w₁ - w₀) × P₀_overall`
-**Rate Effect**: `Q₁ × w₁ × (P₁ - P₀_overall × w₀/w₁)`
+For DRGs present in both periods:
 
-Where Q = separations, P = revenue per separation, w = DRG share of total separations.
+- **Volume Effect**: `(Q₁ - Q₀) × w₀ᵢ × P₀ᵢ`
+- **Mix Effect**: `Q₁ × (w₁ᵢ - w₀ᵢ) × P₀ᵢ`
+- **Rate Effect**: `Q₁ × w₁ᵢ × (P₁ᵢ - P₀ᵢ)`
+
+Where Q = total continuing separations, P = revenue per separation, and w = each
+DRG's share of continuing separations. New and discontinued DRGs are reported
+separately. The bridge is required to reconcile to the observed revenue change,
+with only rounding-level residuals.
 
 ## 3. Margin Squeeze Analysis
 
