@@ -188,7 +188,15 @@ def load_nhcdc_to_warehouse(con: duckdb.DuckDBPyConnection):
         df = df[df["drg_code"].str.match(r"^[A-Z0-9]{3}[A-Z]$", na=False)].copy()
         
         # Select only the needed columns
-        df_clean = df[["drg_code", "cost_weight", "separation_count", "average_los", "cost_per_separation"]]
+        df_clean = df[
+            [
+                "drg_code",
+                "cost_weight",
+                "separation_count",
+                "average_los",
+                "cost_per_separation",
+            ]
+        ].copy()
         df_clean["period_id"] = 1
         df_clean["sector"] = "public"
         df_clean["nwau_per_separation"] = df_clean["cost_weight"]
