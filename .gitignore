@@ -34,3 +34,5 @@ warehouse/
 
 # Power BI (large binary)
 *.pbix
+powerbi/exports/*
+!powerbi/exports/.gitkeep

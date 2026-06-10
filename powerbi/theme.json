@@ -1,0 +1,77 @@
+{
+  "name": "Casemix Revenue Intelligence",
+  "dataColors": [
+    "#087F73",
+    "#B23A48",
+    "#B7791F",
+    "#526575",
+    "#3D7EA6",
+    "#7A6C8F",
+    "#6B7D55",
+    "#9A6A4F"
+  ],
+  "background": "#F7F9FA",
+  "foreground": "#17232D",
+  "tableAccent": "#087F73",
+  "good": "#087F73",
+  "neutral": "#B7791F",
+  "bad": "#B23A48",
+  "maximum": "#087F73",
+  "center": "#E7EDF0",
+  "minimum": "#B23A48",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 24,
+      "color": "#17232D"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 14,
+      "color": "#17232D"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#17232D"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#526575"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#D9E0E5"
+              }
+            },
+            "radius": 4
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": true
+          }
+        ]
+      }
+    }
+  }
+}

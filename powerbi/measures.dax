@@ -1,0 +1,92 @@
+-- Core financial measures
+Total Revenue =
+SUM ( fact_episodes[contracted_rate] )
+
+Total Cost =
+SUM ( fact_episodes[estimated_cost] )
+
+Margin =
+[Total Revenue] - [Total Cost]
+
+Margin % =
+DIVIDE ( [Margin], [Total Revenue] )
+
+Separations =
+COUNTROWS ( fact_episodes )
+
+Total NWAU =
+SUM ( fact_episodes[nwau] )
+
+Casemix Index =
+DIVIDE ( [Total NWAU], [Separations] )
+
+Revenue per Separation =
+DIVIDE ( [Total Revenue], [Separations] )
+
+Cost per Separation =
+DIVIDE ( [Total Cost], [Separations] )
+
+Margin per Separation =
+DIVIDE ( [Margin], [Separations] )
+
+Outlier Separations =
+CALCULATE ( [Separations], fact_episodes[is_outlier] = TRUE () )
+
+Outlier Rate =
+DIVIDE ( [Outlier Separations], [Separations] )
+
+-- Time intelligence
+Revenue Prior Year =
+CALCULATE (
+    [Total Revenue],
+    DATEADD ( dim_period[quarter_start], -1, YEAR )
+)
+
+Revenue YoY Change =
+[Total Revenue] - [Revenue Prior Year]
+
+Revenue YoY % =
+DIVIDE ( [Revenue YoY Change], [Revenue Prior Year] )
+
+Margin Prior Year =
+CALCULATE (
+    [Margin],
+    DATEADD ( dim_period[quarter_start], -1, YEAR )
+)
+
+Margin YoY Change =
+[Margin] - [Margin Prior Year]
+
+-- Data governance
+Synthetic Episode % =
+DIVIDE (
+    CALCULATE ( [Separations], fact_episodes[is_synthetic] = TRUE () ),
+    [Separations]
+)
+
+-- Margin squeeze outputs
+Severe Squeeze DRGs =
+CALCULATE (
+    COUNTROWS ( margin_squeeze ),
+    margin_squeeze[squeeze_category] = "SEVERE SQUEEZE"
+)
+
+At-Risk DRGs =
+CALCULATE (
+    COUNTROWS ( margin_squeeze ),
+    margin_squeeze[squeeze_category]
+        IN { "SEVERE SQUEEZE", "MODERATE SQUEEZE", "MILD SQUEEZE" }
+)
+
+-- Disconnected scenario output
+Scenario Revenue =
+SUM ( contract_scenarios[total_revenue] )
+
+Scenario Cost =
+SUM ( contract_scenarios[total_cost] )
+
+Scenario Margin =
+SUM ( contract_scenarios[margin] )
+
+Scenario Margin % =
+DIVIDE ( [Scenario Margin], [Scenario Revenue] )

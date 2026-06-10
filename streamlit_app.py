@@ -225,7 +225,7 @@ with tabs[0]:
         st.plotly_chart(fig, width="stretch")
 
     with risk_col:
-        st.subheader("Largest DRG margin exposures")
+        st.subheader("Lowest DRG margins")
         loss_drgs = drg.nsmallest(8, "margin").sort_values("margin")
         risk_fig = px.bar(
             loss_drgs,
@@ -233,7 +233,7 @@ with tabs[0]:
             y="drg_code",
             orientation="h",
             hover_data=["drg_description", "separations", "margin_pct"],
-            color_discrete_sequence=[COLOR_MAP["negative"]],
+            color_discrete_sequence=[COLOR_MAP["accent"]],
         )
         risk_fig.update_layout(xaxis_title="Margin (AUD)", yaxis_title=None)
         st.plotly_chart(risk_fig, width="stretch")

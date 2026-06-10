@@ -48,6 +48,8 @@ published national distributions.
 
 See [Executive Summary](docs/executive_summary.md) for the decision narrative.
 
+![Executive dashboard](docs/images/executive-dashboard.png)
+
 ## Self-Service Application
 
 Run the application after building the demo warehouse:
@@ -66,6 +68,24 @@ The application provides:
    controls.
 
 All pages share financial year, hospital and health-fund filters.
+
+![Contract modeller](docs/images/contract-modeller.png)
+
+## Power BI Delivery
+
+The [Power BI delivery pack](powerbi/README.md) includes:
+
+- reproducible fact, dimension and analysis extract generation
+- star-schema relationship definitions
+- production-style DAX measures
+- an accessible report theme
+- four-page dashboard and interaction specifications
+
+Generate the Power BI-ready extracts with:
+
+```bash
+python -m powerbi.export_data
+```
 
 ## Architecture
 
